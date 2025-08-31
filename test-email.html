@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email通知テスト</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        .config-section {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Email通知テスト</h1>
+        
+        <div class="info">
+            <strong>このテストツールについて：</strong><br>
+            EmailJSの設定が正しく完了しているか確認できます。<br>
+            送信すると、設定した2つのメールアドレスに通知が送信されます。
+        </div>
+
+        <div class="config-section">
+            <strong>⚠️ 設定前に確認：</strong><br>
+            1. EmailJSアカウントを作成済み<br>
+            2. Service ID、Template ID、Public Keyを取得済み<br>
+            3. 下記の設定欄に正しい値を入力<br>
+        </div>
+
+        <div class="form-group">
+            <label>EmailJS Service ID:</label>
+            <input type="text" id="serviceId" placeholder="service_xxxxx" value="">
+        </div>
+
+        <div class="form-group">
+            <label>EmailJS Template ID (通知用):</label>
+            <input type="text" id="templateId" placeholder="template_xxxxx" value="">
+        </div>
+
+        <div class="form-group">
+            <label>EmailJS Public Key:</label>
+            <input type="text" id="publicKey" placeholder="xxxxxxxxxxx" value="">
+        </div>
+
+        <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;">
+
+        <h2>テストフォーム</h2>
+        
+        <div class="form-group">
+            <label>お名前:</label>
+            <input type="text" id="name" value="テスト太郎" required>
+        </div>
+
+        <div class="form-group">
+            <label>電話番号:</label>
+            <input type="tel" id="phone" value="0400-000-000" required>
+        </div>
+
+        <div class="form-group">
+            <label>メールアドレス:</label>
+            <input type="email" id="email" placeholder="your-email@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label>クリニック名:</label>
+            <input type="text" id="clinic" value="テストクリニック">
+        </div>
+
+        <div class="form-group">
+            <label>ケース詳細:</label>
+            <textarea id="message" rows="4">これはEmailJSのテスト送信です。正常に動作することを確認しています。</textarea>
+        </div>
+
+        <button id="sendButton" onclick="sendTestEmail()">
+            テスト送信
+        </button>
+
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        function sendTestEmail() {
+            const button = document.getElementById('sendButton');
+            const status = document.getElementById('status');
+            
+            // Get configuration values
+            const serviceId = document.getElementById('serviceId').value;
+            const templateId = document.getElementById('templateId').value;
+            const publicKey = document.getElementById('publicKey').value;
+            
+            // Validate configuration
+            if (!serviceId || !templateId || !publicKey) {
+                status.className = 'status error';
+                status.innerHTML = '❌ EmailJSの設定値を入力してください';
+                return;
+            }
+            
+            // Initialize EmailJS
+            emailjs.init(publicKey);
+            
+            // Disable button
+            button.disabled = true;
+            button.textContent = '送信中...';
+            status.className = 'status';
+            status.innerHTML = '';
+            
+            // Prepare template parameters
+            const templateParams = {
+                client_name: document.getElementById('name').value,
+                client_email: document.getElementById('email').value,
+                client_phone: document.getElementById('phone').value,
+                clinic_name: document.getElementById('clinic').value,
+                case_details: document.getElementById('message').value,
+                submission_date: new Date().toLocaleString('ja-JP'),
+                notification_recipients: 'futurity_gc@outlook.jp, yoshiyasu1304@gmail.com'
+            };
+            
+            // Send email
+            emailjs.send(serviceId, templateId, templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    status.className = 'status success';
+                    status.innerHTML = `
+                        ✅ <strong>送信成功！</strong><br>
+                        以下のアドレスにメールが送信されました：<br>
+                        • futurity_gc@outlook.jp<br>
+                        • yoshiyasu1304@gmail.com<br>
+                        <br>
+                        メールが届いているか確認してください。<br>
+                        （迷惑メールフォルダもチェックしてください）
+                    `;
+                    
+                    // Save configuration for next time
+                    localStorage.setItem('emailjs_service_id', serviceId);
+                    localStorage.setItem('emailjs_template_id', templateId);
+                    localStorage.setItem('emailjs_public_key', publicKey);
+                })
+                .catch(function(error) {
+                    console.error('FAILED...', error);
+                    status.className = 'status error';
+                    status.innerHTML = `
+                        ❌ <strong>送信失敗</strong><br>
+                        エラー: ${error.text || error}<br>
+                        <br>
+                        考えられる原因：<br>
+                        • Service ID、Template ID、Public Keyが正しくない<br>
+                        • EmailJSのテンプレート設定が不完全<br>
+                        • 月間送信制限（無料プランは200通）に達している<br>
+                        • インターネット接続の問題
+                    `;
+                })
+                .finally(function() {
+                    button.disabled = false;
+                    button.textContent = 'テスト送信';
+                });
+        }
+        
+        // Load saved configuration
+        window.onload = function() {
+            document.getElementById('serviceId').value = localStorage.getItem('emailjs_service_id') || '';
+            document.getElementById('templateId').value = localStorage.getItem('emailjs_template_id') || '';
+            document.getElementById('publicKey').value = localStorage.getItem('emailjs_public_key') || '';
+            
+            // Set your email as default for testing
+            const emailField = document.getElementById('email');
+            if (!emailField.value) {
+                emailField.focus();
+            }
+        };
+    </script>
+</body>
+</html>

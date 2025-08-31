@@ -31,6 +31,12 @@ import implantImage from "/assets/new_implant_image.png";
 import labWorkImage from "/assets/new_lab_work_image.png";
 import beforeAfterImage from "/assets/new_before_after_image.png";
 import happyPatientImage from "/assets/new_happy_patient_image.png";
+import shadeConsultationBefore from "/assets/shade-consultation-before.jpg";
+import shadeConsultationAfter from "/assets/shade-consultation-after.jpg";
+import exceptionalVeneerImage from "/assets/exceptional-veneer-craftsmanship.png";
+import crownBridgeSolutionsImage from "/assets/crown-bridge-solutions.png";
+import implantRestoration1 from "/assets/implant-restoration-1.png";
+import implantRestoration2 from "/assets/implant-restoration-2.png";
 
 function App() {
   const handleSubmit = (e) => {
@@ -144,8 +150,7 @@ function App() {
                     <p className="font-medium mb-2">Materials Available:</p>
                     <ul className="space-y-1">
                       <li>• Zirconia Veneers</li>
-                      <li>• E-max Veneers</li>
-                      <li>• Porcelain Veneers</li>
+                      <li>• e-Max Veneers</li>
                     </ul>
                   </div>
                   <div className="pt-2 border-t">
@@ -173,8 +178,7 @@ function App() {
                     <p className="font-medium mb-2">Materials Available:</p>
                     <ul className="space-y-1">
                       <li>• Zirconia Crowns</li>
-                      <li>• PFM Crowns</li>
-                      <li>• All-Ceramic Crowns</li>
+                      <li>• e-Max Crowns</li>
                     </ul>
                   </div>
                   <div className="pt-2 border-t">
@@ -260,68 +264,6 @@ function App() {
         </div>
       </motion.section>
 
-      {/* Veneer Highlight Section */}
-      <motion.section 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6 }}
-        className="py-16"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4 bg-blue-100 text-blue-800">
-                Our Specialty
-              </Badge>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Exceptional Veneer Craftsmanship
-              </h2>
-              <p className="text-lg text-gray-600 mb-6">
-                Specialising in premium veneers using the finest materials including 
-                Zirconia and E-max. Our focus on aesthetics, occlusion, and precise fit 
-                ensures outstanding results every time.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold">Superior Aesthetics</h4>
-                    <p className="text-gray-600">Natural-looking results with perfect colour matching</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold">Precise Occlusion</h4>
-                    <p className="text-gray-600">Optimal bite alignment for long-term comfort</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-semibold">Perfect Fit</h4>
-                    <p className="text-gray-600">Digital precision for seamless integration</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <img 
-                src={veneerImage} 
-                alt="Digital dentistry process" 
-                className="rounded-lg shadow-lg"
-              />
-              <img 
-                src={beforeAfterImage} 
-                alt="Before and after veneer results" 
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
       {/* Online Consultation Section */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
@@ -374,38 +316,135 @@ function App() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
-              <img 
-                src={labWorkImage} 
-                alt="Online dental consultation setup" 
-                className="rounded-lg shadow-xl"
-              />
-              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
-                <div className="flex items-center">
-                  <div className="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                  <div>
-                    <p className="font-semibold text-sm">Available Now</p>
-                    <p className="text-xs text-gray-600">Online Consultations</p>
+            <div className="space-y-8">
+              {/* Before/After Images */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <div className="relative group">
+                  <img 
+                    src={shadeConsultationBefore} 
+                    alt="Before: Shade consultation with color matching tabs" 
+                    className="rounded-lg shadow-lg w-full h-64 sm:h-72 lg:h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium shadow-lg">
+                    Before: Consultation
+                  </div>
+                </div>
+                <div className="relative group">
+                  <img 
+                    src={shadeConsultationAfter} 
+                    alt="After: Perfect smile with natural-looking veneers" 
+                    className="rounded-lg shadow-lg w-full h-64 sm:h-72 lg:h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-4 left-4 bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium shadow-lg">
+                    After: Results
                   </div>
                 </div>
               </div>
-              <div className="mt-8">
-                <iframe 
-                  width="100%" 
-                  height="315" 
-                  src="https://www.youtube.com/embed/lGoBJQUgu0U" 
-                  title="YouTube video player" 
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerPolicy="strict-origin-when-cross-origin" 
-                  allowFullScreen
-                  className="rounded-lg shadow-xl"
-                ></iframe>
+              
+              {/* Status Indicator */}
+              <div className="flex justify-center">
+                <div className="bg-white p-4 rounded-lg shadow-lg border">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></div>
+                    <div className="text-center">
+                      <p className="font-semibold text-sm text-gray-900">Available Now</p>
+                      <p className="text-xs text-gray-600">Online Shape & Shade Consultations</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* YouTube Video */}
+              <div className="max-w-3xl mx-auto">
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-xl">
+                  <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/lGoBJQUgu0U" 
+                    title="Shape & Shade Consultation Process - See How We Perfect Your Smile" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerPolicy="strict-origin-when-cross-origin" 
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  ></iframe>
+                </div>
+                <div className="text-center mt-4">
+                  <p className="text-sm text-gray-600 mb-2">
+                    Watch our consultation process in action
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-purple-600 border-purple-600 hover:bg-purple-50"
+                  >
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Schedule Your Consultation
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </motion.section>
+
+      {/* Veneer Highlight Section */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+        className="py-16"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Badge className="mb-4 bg-blue-100 text-blue-800">
+                Our Specialty
+              </Badge>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Exceptional Veneer Craftsmanship
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Specialising in premium veneers using the finest materials including 
+                Zirconia and e-Max. Our focus on aesthetics, occlusion, and precise fit 
+                ensures outstanding results every time.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold">Superior Aesthetics</h4>
+                    <p className="text-gray-600">Natural-looking results with perfect colour matching</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold">Precise Occlusion</h4>
+                    <p className="text-gray-600">Optimal bite alignment for long-term comfort</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold">Perfect Fit</h4>
+                    <p className="text-gray-600">Digital precision for seamless integration</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <img 
+                src={exceptionalVeneerImage} 
+                alt="Exceptional veneer craftsmanship showcase" 
+                className="rounded-lg shadow-lg w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
       {/* Advanced Crown & Bridge Solutions */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
@@ -418,9 +457,9 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <img 
-                src={crownImage} 
-                alt="Dental laboratory computer workstation" 
-                className="rounded-lg shadow-lg"
+                src={crownBridgeSolutionsImage} 
+                alt="Advanced crown and bridge solutions" 
+                className="rounded-lg shadow-lg w-full"
               />
             </div>
             <div className="order-1 lg:order-2">
@@ -428,7 +467,7 @@ function App() {
                 Advanced Crown & Bridge Solutions
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Utilising premium materials from trusted manufacturers including GC, 
+                Utilising premium materials from trusted manufacturers including Aidite, GC, 
                 Ivoclar, and Amann Girbach. Our digital workflow incorporates exocad 
                 design software, LabScanner technology, and precision 3D printing.
               </p>
@@ -436,7 +475,7 @@ function App() {
                 <div className="text-center p-4 bg-white rounded-lg">
                   <Award className="h-8 w-8 text-blue-600 mx-auto mb-2" />
                   <h4 className="font-semibold">Premium Materials</h4>
-                  <p className="text-sm text-gray-600">GC, Ivoclar, Amann Girbach</p>
+                  <p className="text-sm text-gray-600">Aidite, GC, Ivoclar, Amann Girbach</p>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg">
                   <Microscope className="h-8 w-8 text-blue-600 mx-auto mb-2" />
@@ -487,11 +526,16 @@ function App() {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <img 
-                src={implantImage} 
-                alt="Precision dental implant work" 
-                className="rounded-lg shadow-lg"
+                src={implantRestoration1} 
+                alt="Precision dental implant restoration - detailed view" 
+                className="rounded-lg shadow-lg w-full h-64 object-cover"
+              />
+              <img 
+                src={implantRestoration2} 
+                alt="Precision dental implant restoration - final result" 
+                className="rounded-lg shadow-lg w-full h-64 object-cover"
               />
             </div>
           </div>
@@ -525,17 +569,16 @@ function App() {
                 ))}
               </div>
               <blockquote className="text-lg italic text-gray-700 mb-4">
-                "It is always a pleasure to collaborate with my friend and talented Ceramist Hiro Takada.
-                Hiro is a great exponent of the use of monolithic eMax, creating quite outstanding restorations 
-                with this predictable and inspiring material. He continues to stay up to date 
-                with the latest material improvements and most recently he is venturing into the use 
-                of ultra-thin zirconia veneers - a field that compliments the digital workflow 
-                and is likely to grow in the coming years."
+                "It is always a pleasure to collaborate with my friend and talented Ceramist, Hiro Takada.
+
+                Hiro is a great exponent of the use of monolithic eMax, creating quite outstanding restorations with this predictable and inspiring material.
+
+                He continues to stay up to date with the latest material improvements, and most recently, he is venturing into the use of ultra-thin zirconia veneers — a field that complements the digital workflow and is likely to grow in the coming years."
               </blockquote>
               <div className="flex items-center justify-center">
                 <div className="text-center">
                   <p className="font-semibold text-gray-900">Dr. Michael Mandikos</p>
-                  <p className="text-sm text-gray-600">BDSc (Hons), MS (New York), Cert Pros, FRACDS, FPFA</p>
+                  <p className="text-sm text-gray-600">BDSc (Hons),MS(New York),Cert Pros, FRACDS, FPFA,</p>
                 </div>
               </div>
             </div>

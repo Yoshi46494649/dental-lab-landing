@@ -71,11 +71,7 @@ function HomePage() {
                 Contact
               </a>
             </nav>
-            <div className="flex items-center space-x-6">
-              <a href="tel:0421791640" className="hidden md:flex items-center space-x-2 text-gray-700 hover:text-blue-600 smooth-transition">
-                <Phone className="h-5 w-5 text-blue-600" />
-                <span className="font-semibold">0421 791 640</span>
-              </a>
+            <div className="flex items-center">
               <ContactModal triggerText="Get Started">
                 <Button className="btn-primary hidden md:inline-flex">
                   Get Started

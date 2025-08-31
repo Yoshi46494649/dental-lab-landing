@@ -163,17 +163,60 @@
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* Animation Classes */
+/* Animation Classes - Optimized for Performance */
 .hover-lift {
   @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  transform: translateZ(0); /* Enable hardware acceleration */
+  will-change: transform, box-shadow; /* Optimize for animations */
 }
 
 .hover-scale {
   @apply transition-transform duration-300 hover:scale-105;
+  transform: translateZ(0); /* Enable hardware acceleration */
+  will-change: transform; /* Optimize for scaling */
 }
 
 .smooth-transition {
   @apply transition-all duration-300 ease-in-out;
+  will-change: auto; /* Let browser optimize */
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Optimize scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize font rendering */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1;
+}
+
+/* GPU acceleration for commonly animated elements */
+.card-professional,
+.btn-primary,
+.btn-secondary {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Card Improvements */

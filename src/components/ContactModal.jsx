@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { submitToGoogleSheets } from '../services/googleSheets';
 import { sendNotificationEmails, sendClientAutoReply } from '../services/emailService';
+import { sanitizeFormData, isRateLimited } from '../utils/sanitize';
 import {
   Dialog,
   DialogContent,
@@ -25,13 +26,25 @@ import {
   Shield
 } from 'lucide-react';
 
-// Validation schema
+// Validation schema with enhanced security
 const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  phone: z.string().min(10, 'Phone number must be at least 10 digits'),
-  email: z.string().email('Please enter a valid email address'),
-  clinic: z.string().optional(),
-  message: z.string().min(10, 'Please provide detailed case requirements (minimum 10 characters)'),
+  name: z.string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name is too long')
+    .regex(/^[a-zA-Z\s\.\-']+$/, 'Name contains invalid characters'),
+  phone: z.string()
+    .min(10, 'Phone number must be at least 10 digits')
+    .max(15, 'Phone number is too long')
+    .regex(/^[\d\s\+\-\(\)]+$/, 'Phone contains invalid characters'),
+  email: z.string()
+    .email('Please enter a valid email address')
+    .max(254, 'Email is too long'),
+  clinic: z.string()
+    .max(200, 'Clinic name is too long')
+    .optional(),
+  message: z.string()
+    .min(10, 'Please provide detailed case requirements (minimum 10 characters)')
+    .max(2000, 'Message is too long (maximum 2000 characters)'),
 });
 
 export function ContactModal({ children, triggerText = "Get Started" }) {
@@ -51,17 +64,26 @@ export function ContactModal({ children, triggerText = "Get Started" }) {
   // Form submission handlers are now imported from services
 
   const onSubmit = async (data) => {
+    // Check rate limiting
+    if (isRateLimited(data.email)) {
+      alert('Please wait at least 1 minute between submissions.');
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
+      // Sanitize form data before submission
+      const sanitizedData = sanitizeFormData(data);
+      
       // Submit to Google Sheets
-      const sheetsResult = await submitToGoogleSheets(data);
+      const sheetsResult = await submitToGoogleSheets(sanitizedData);
       
       // Send notification emails
-      const emailResult = await sendNotificationEmails(data);
+      const emailResult = await sendNotificationEmails(sanitizedData);
       
       // Send auto-reply to client
-      const autoReplyResult = await sendClientAutoReply(data);
+      const autoReplyResult = await sendClientAutoReply(sanitizedData);
       
       // Consider successful if any method works (for redundancy)
       const anySuccess = sheetsResult?.success || emailResult?.success || autoReplyResult?.success || sheetsResult?.fallback;

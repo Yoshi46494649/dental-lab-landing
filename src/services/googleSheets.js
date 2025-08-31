@@ -1,7 +1,8 @@
 // Google Sheets API integration
 // This will connect to the specified Google Spreadsheet
 
-const SPREADSHEET_ID = '1sWX4B6Vo4I0q-fDIkS7l3EgZtn5qem39-Ale7KSfcsk';
+// WARNING: This ID should be moved to environment variables
+const SPREADSHEET_ID = import.meta.env.VITE_SPREADSHEET_ID || '1sWX4B6Vo4I0q-fDIkS7l3EgZtn5qem39-Ale7KSfcsk';
 
 // For client-side Google Sheets integration, we'll use the REST API approach
 // This requires the spreadsheet to be publicly accessible or use Google Apps Script
@@ -94,7 +95,8 @@ export const submitViaDirectAPI = async (formData) => {
 // Google Apps Script code that should be deployed as a Web App:
 /*
 function doPost(e) {
-  const sheet = SpreadsheetApp.openById('1sWX4B6Vo4I0q-fDIkS7l3EgZtn5qem39-Ale7KSfcsk').getActiveSheet();
+  // WARNING: Replace with your actual spreadsheet ID
+  const sheet = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID').getActiveSheet();
   const data = JSON.parse(e.postData.contents);
   
   // Add headers if this is the first row

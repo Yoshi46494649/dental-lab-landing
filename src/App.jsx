@@ -99,7 +99,7 @@ function HomePage() {
             <div>
               {/* Mobile version - shorter text */}
               <Badge className="mb-0 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 hover:from-blue-200 hover:to-purple-200 px-4 py-2 text-sm font-medium block md:hidden">
-                Young Dentists & Patients | Brisbane・Sunshine・Gold Coast
+                Young Dentists | Brisbane・Gold Coast
               </Badge>
               {/* Desktop version - full text */}
               <Badge className="mb-0 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 hover:from-blue-200 hover:to-purple-200 px-4 py-2 text-sm font-medium hidden md:block">
@@ -803,7 +803,7 @@ function HomePage() {
           
           <div className="border-t border-gray-700 mt-12 pt-8">
             <div className="text-center mb-4">
-              <p className="text-gray-400 font-semibold">Mirai Dental Graphics | ABN: 12 345 678 901</p>
+              <p className="text-gray-400 font-semibold">Mirai Dental Graphics | ABN: 79 716 365 017</p>
               <p className="text-gray-400">&copy; 2025 Mirai Dental Graphics. All rights reserved.</p>
               <p className="text-gray-500 text-sm mt-2">Crafting Perfect Smiles with 30 Years of Excellence</p>
             </div>

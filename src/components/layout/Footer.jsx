@@ -37,7 +37,8 @@ const Footer = () => {
               <div className="flex items-start hover:text-blue-300 transition-colors">
                 <MapPin className="h-5 w-5 mr-3 text-blue-400 mt-0.5" />
                 <div className="text-gray-300">
-                  <p>Brisbane QLD 4000</p>
+                  <p>42 Redford St</p>
+                  <p>Kingston QLD 4114</p>
                   <p>Australia</p>
                 </div>
               </div>

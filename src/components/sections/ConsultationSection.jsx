@@ -108,6 +108,7 @@ const ConsultationSection = ({ shadeConsultationBefore, shadeConsultationAfter }
                 videoSrc="/assets/moview.mp4"
                 title="Shape & Shade Consultation Process - See How We Perfect Your Smile"
                 className="rounded-lg overflow-hidden shadow-xl"
+                poster="/assets/video-thumbnail.jpg"
               />
               <div className="text-center mt-4">
                 <p className="text-sm text-gray-600 mb-2">

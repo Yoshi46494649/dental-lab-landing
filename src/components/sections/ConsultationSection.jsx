@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import ContactModal from '../ContactModal';
-import LazyYouTube from '../ui/LazyYouTube';
+import LazyVideo from '../ui/LazyVideo';
 import { CheckCircle, Calendar } from 'lucide-react';
 
 const ConsultationSection = ({ shadeConsultationBefore, shadeConsultationAfter }) => {
@@ -102,10 +102,10 @@ const ConsultationSection = ({ shadeConsultationBefore, shadeConsultationAfter }
               </div>
             </div>
 
-            {/* YouTube Video */}
+            {/* Local Video */}
             <div className="max-w-3xl mx-auto">
-              <LazyYouTube 
-                videoId="lGoBJQUgu0U"
+              <LazyVideo 
+                videoSrc="/assets/moview.mp4"
                 title="Shape & Shade Consultation Process - See How We Perfect Your Smile"
                 className="rounded-lg overflow-hidden shadow-xl"
               />

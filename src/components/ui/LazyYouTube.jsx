@@ -20,12 +20,15 @@ const LazyYouTube = ({
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/${thumbnailQuality}.jpg`;
 
   if (inView && isLoaded) {
+    // Most basic YouTube embed URL to avoid any blocking
+    const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
     return (
       <div ref={ref} className={`relative aspect-video ${className}`}>
         <iframe 
           width="100%" 
           height="100%" 
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} 
+          src={embedUrl}
           title={title}
           frameBorder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 

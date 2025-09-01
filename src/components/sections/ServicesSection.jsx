@@ -4,12 +4,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui
 import { Microscope, Shield, Zap, Clock } from 'lucide-react';
 
 const ServicesSection = () => {
+  // Mobile-optimized animation settings
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const animationDuration = isMobile ? 0.3 : 0.6;
+  
   return (
     <motion.section 
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: isMobile ? 20 : 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6 }}
+      viewport={{ once: true, amount: isMobile ? 0.1 : 0.3 }}
+      transition={{ duration: animationDuration, ease: "easeOut" }}
       className="section-padding bg-gray-50"
       id="services"
     >

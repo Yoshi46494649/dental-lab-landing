@@ -167,13 +167,21 @@
 .hover-lift {
   @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
   transform: translateZ(0); /* Enable hardware acceleration */
-  will-change: transform, box-shadow; /* Optimize for animations */
+  will-change: auto; /* Let browser decide by default */
+}
+
+.hover-lift:hover {
+  will-change: transform, box-shadow; /* Only optimize when hovering */
 }
 
 .hover-scale {
   @apply transition-transform duration-300 hover:scale-105;
   transform: translateZ(0); /* Enable hardware acceleration */
-  will-change: transform; /* Optimize for scaling */
+  will-change: auto; /* Let browser decide by default */
+}
+
+.hover-scale:hover {
+  will-change: transform; /* Only optimize when hovering */
 }
 
 .smooth-transition {
@@ -203,6 +211,35 @@ html {
   }
 }
 
+/* Mobile-specific performance optimizations */
+@media (max-width: 768px) {
+  /* Simplify hover effects on touch devices */
+  .hover-lift {
+    transition-duration: 0.15s; /* Shorter transitions */
+  }
+  
+  .hover-lift:hover {
+    transform: translateZ(0) translateY(-1px); /* Reduce movement */
+    will-change: auto; /* Remove will-change on mobile */
+  }
+  
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1.02); /* Reduce scale on mobile */
+    transition-duration: 0.15s; /* Shorter transitions */
+  }
+  
+  /* Disable complex transforms on very small screens */
+  @media (max-width: 480px) {
+    .hover-lift:hover {
+      transform: translateZ(0); /* No movement on small screens */
+    }
+    
+    .group:hover .group-hover\:scale-110 {
+      transform: none; /* No scaling on very small screens */
+    }
+  }
+}
+
 /* Optimize font rendering */
 body {
   text-rendering: optimizeLegibility;
@@ -217,6 +254,13 @@ body {
 .btn-secondary {
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+/* Mobile-specific optimizations for cards */
+@media (max-width: 768px) {
+  .card-professional {
+    will-change: auto; /* Let browser optimize on mobile */
+  }
 }
 
 /* Card Improvements */

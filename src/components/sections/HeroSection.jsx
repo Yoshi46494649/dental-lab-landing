@@ -25,7 +25,7 @@ const HeroSection = ({ heroImage }) => {
               For Young Dentists & Patients | Brisbane, Sunshine Coast & Gold Coast
             </Badge>
             <h1 className="heading-primary font-heading text-gray-900 mb-4 md:mb-6">
-              Crafting Perfect <span className="text-gradient">Smiles</span>, Together.
+              Creating <span className="text-gradient">Smile Design</span> Together
             </h1>
             <p className="text-body-large text-gray-600 mb-8 md:mb-10 leading-relaxed">
               Your trusted partner for exceptional veneers, crowns, and implants. 

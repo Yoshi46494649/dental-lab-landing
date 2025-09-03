@@ -61,7 +61,7 @@ const Footer = () => {
           <div className="text-center mb-4">
             <p className="text-gray-400 font-semibold">Mirai Dental Graphics | ABN: 79 716 365 017</p>
             <p className="text-gray-400">&copy; 2025 Mirai Dental Graphics. All rights reserved.</p>
-            <p className="text-gray-500 text-sm mt-2">Crafting Perfect Smiles with 30 Years of Excellence</p>
+            <p className="text-gray-500 text-sm mt-2">Creating Smile Design with 30 Years of Excellence</p>
           </div>
           
           <div className="flex justify-center gap-6 text-sm text-gray-500">
